@@ -1,0 +1,24 @@
+name: Sync Script to Gist
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wingetter.ps1'
+      - '.github/workflows/sync-gist.yml'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Sync to Gist
+        uses: exuanbo/actions-core-gist@v1
+        with:
+          gist_id: ${{ secrets.GIST_ID }}
+          gist_file_name: wingetter.ps1
+          file_path: wingetter.ps1
+          github_token: ${{ secrets.GIST_TOKEN }}
