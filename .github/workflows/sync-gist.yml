@@ -3,7 +3,7 @@ name: Sync Script to Gist
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'wingetter.ps1'
       - '.github/workflows/sync-gist.yml'
