@@ -15,11 +15,17 @@ Wingetter is a GUI-based utility script written in PowerShell that simplifies th
 
 ## Usage
 
-1. **Download the script**: Clone this repository or download the `wingetter.ps1` file.
-2. **Run the script**:
+1. **Run directly from the web**:
+   You can execute this script immediately without downloading or cloning by running this command in PowerShell:
+   ```powershell
+   irm "https://raw.githubusercontent.com/akhilasuraj/wingetter/master/wingetter.ps1" | iex
+   ```
+
+2. **Run locally**:
+   - Clone this repository or download the `wingetter.ps1` file.
    - Navigate to the folder containing the script.
    - Right-click `wingetter.ps1` and select **Run with PowerShell**.
-   - **OR**, copy the script path and execute it directly from a PowerShell console:
+   - **OR**, execute it directly from a PowerShell console:
      ```powershell
      .\wingetter.ps1
      ```
