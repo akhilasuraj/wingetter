@@ -58,6 +58,7 @@ if (-not $wingetCmd) {
     if ($response -match '^[Yy]$') {
         Start-Process "ms-windows-store://pdp/?productid=9NBLGGH4NNS1"
     }
+    Read-Host "`nPress Enter to exit"
     exit
 }
 
@@ -79,6 +80,7 @@ try {
             } else {
                 Write-Host "winget update failed (exit code $LASTEXITCODE). Continuing with current version." -ForegroundColor Red
             }
+            Read-Host "`nPress Enter to exit"
             exit
         }
         Write-Host "Skipping winget update. Continuing with v$currentVersionStr." -ForegroundColor Gray
@@ -101,6 +103,7 @@ $wingetOutput = winget upgrade --disable-interactivity 2>&1
 # Check if there are any updates available
 if ($wingetOutput -match "No installed packages have available upgrades") {
     Write-Host "All installed packages are up to date! 🎉" -ForegroundColor Green
+    Read-Host "`nPress Enter to exit"
     exit
 }
 
@@ -116,6 +119,10 @@ for ($i = 0; $i -lt $wingetOutput.Count; $i++) {
 
 if ($headerLineIndex -eq -1) {
     Write-Host "Failed to parse winget output. Please ensure winget is installed and working." -ForegroundColor Red
+    Write-Host "`n--- Raw winget output (for diagnostics) ---" -ForegroundColor Yellow
+    $wingetOutput | ForEach-Object { Write-Host $_ }
+    Write-Host "-------------------------------------------`n" -ForegroundColor Yellow
+    Read-Host "Press Enter to exit"
     exit
 }
 
@@ -126,6 +133,7 @@ $availableStart = $headerLine.IndexOf(" Available ") + 1
 
 if ($idStart -le 0 -or $versionStart -le 0) {
     Write-Host "Failed to identify columns in winget output." -ForegroundColor Red
+    Read-Host "`nPress Enter to exit"
     exit
 }
 
@@ -169,6 +177,7 @@ for ($i = $headerLineIndex + 2; $i -lt $wingetOutput.Count; $i++) {
 
 if ($updates.Count -eq 0) {
     Write-Host "No updatable packages found after parsing." -ForegroundColor Yellow
+    Read-Host "`nPress Enter to exit"
     exit
 }
 
@@ -265,6 +274,7 @@ if ($result -eq 'OK') {
 
 if (-not $selectedUpdates -or $selectedUpdates.Count -eq 0) {
     Write-Host "No packages selected. Exiting." -ForegroundColor Yellow
+    Read-Host "`nPress Enter to exit"
     exit
 }
 
@@ -286,3 +296,4 @@ foreach ($app in $selectedUpdates) {
 }
 
 Write-Header "All processes complete! 🎉"
+Read-Host "Press Enter to exit"
