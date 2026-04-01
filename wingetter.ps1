@@ -98,7 +98,7 @@ Write-Host "This might take a moment..." -ForegroundColor Gray
 
 # Run winget upgrade and capture its output
 # We suppress the progress bar to make parsing cleaner
-$wingetOutput = winget upgrade --disable-interactivity 2>&1
+$wingetOutput = winget upgrade --disable-interactivity --accept-source-agreements 2>&1
 
 # Check if there are any updates available
 if ($wingetOutput -match "No installed packages have available upgrades") {
@@ -273,8 +273,6 @@ if ($result -eq 'OK') {
 }
 
 if (-not $selectedUpdates -or $selectedUpdates.Count -eq 0) {
-    Write-Host "No packages selected. Exiting." -ForegroundColor Yellow
-    Read-Host "`nPress Enter to exit"
     exit
 }
 
