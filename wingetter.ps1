@@ -47,6 +47,50 @@ if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
     exit
 }
 
+# --- Winget presence and version check ---
+$wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+
+if (-not $wingetCmd) {
+    Write-Host "Windows Package Manager (winget) is not installed on this system." -ForegroundColor Red
+    Write-Host ""
+    Write-Host "To install winget, open the Microsoft Store and install 'App Installer'." -ForegroundColor Yellow
+    $response = Read-Host "Open the Microsoft Store now? (Y/N)"
+    if ($response -match '^[Yy]$') {
+        Start-Process "ms-windows-store://pdp/?productid=9NBLGGH4NNS1"
+    }
+    exit
+}
+
+Write-Host "Checking winget version..." -ForegroundColor Gray
+$currentVersionStr = (winget --version).TrimStart('v')
+
+try {
+    $latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/microsoft/winget-cli/releases/latest" -TimeoutSec 5 -ErrorAction Stop
+    $latestVersionStr = $latestRelease.tag_name.TrimStart('v')
+
+    if ([version]$currentVersionStr -lt [version]$latestVersionStr) {
+        Write-Host "winget v$currentVersionStr is installed, but v$latestVersionStr is available." -ForegroundColor Yellow
+        $response = Read-Host "Update winget now before continuing? (Y/N)"
+        if ($response -match '^[Yy]$') {
+            Write-Host "Updating winget..." -ForegroundColor Cyan
+            winget upgrade --id Microsoft.AppInstaller --exact
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "winget updated successfully. Please re-run Wingetter." -ForegroundColor Green
+            } else {
+                Write-Host "winget update failed (exit code $LASTEXITCODE). Continuing with current version." -ForegroundColor Red
+            }
+            exit
+        }
+        Write-Host "Skipping winget update. Continuing with v$currentVersionStr." -ForegroundColor Gray
+        Write-Host ""
+    } else {
+        Write-Host "winget v$currentVersionStr is up to date." -ForegroundColor Green
+    }
+} catch {
+    Write-Host "winget v$currentVersionStr is installed. (Could not check for updates - skipping)" -ForegroundColor Gray
+}
+# -----------------------------------------
+
 Write-Header "Fetching Available Updates via Winget"
 Write-Host "This might take a moment..." -ForegroundColor Gray
 
