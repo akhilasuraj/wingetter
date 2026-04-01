@@ -7,6 +7,7 @@ on:
     paths:
       - 'wingetter.ps1'
       - '.github/workflows/sync-gist.yml'
+  workflow_dispatch:
 
 jobs:
   sync:
