@@ -26,8 +26,16 @@ if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
     # Restart the script with Administrative privileges
     $processInfo = New-Object System.Diagnostics.ProcessStartInfo
     $processInfo.FileName = "powershell.exe"
-    # Execute the current script path. We pass -NoProfile to skip loading slow user profiles.
-    $processInfo.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+
+    # When run via `irm | iex`, $PSCommandPath is empty (script is in-memory).
+    # Save to a temp file so the elevated process has a file to execute.
+    $scriptPath = $PSCommandPath
+    if ([string]::IsNullOrEmpty($scriptPath)) {
+        $scriptPath = Join-Path $env:TEMP "wingetter_temp.ps1"
+        $MyInvocation.MyCommand.ScriptBlock.ToString() | Set-Content -Path $scriptPath -Encoding UTF8
+    }
+
+    $processInfo.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     $processInfo.Verb = "runas"
     
     try {
