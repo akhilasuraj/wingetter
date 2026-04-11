@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'wingetter.ps1'
+      - 'winget-ui.ps1'
       - '.github/workflows/sync-gist.yml'
   workflow_dispatch:
 
@@ -20,6 +20,6 @@ jobs:
         uses: exuanbo/actions-deploy-gist@v1
         with:
           gist_id: ${{ secrets.GIST_ID }}
-          gist_file_name: wingetter.ps1
-          file_path: wingetter.ps1
+          gist_file_name: winget-ui.ps1
+          file_path: winget-ui.ps1
           token: ${{ secrets.GIST_TOKEN }}

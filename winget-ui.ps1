@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Wingetter - A GUI-based Winget update utility.
+    Winget-UI - A GUI-based Winget update utility.
 
 .DESCRIPTION
     This script runs `winget upgrade` to fetch available package updates on the system,
@@ -8,7 +8,7 @@
     the selected updates.
 
 .EXAMPLE
-    .\wingetter.ps1
+    .\winget-ui.ps1
 #>
 
 # Function to clear the screen and write a styled message
@@ -20,7 +20,7 @@ function Write-Header {
 # Ensure Script is Running as Administrator
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "Wingetter requires Administrator privileges to update multiple applications reliably." -ForegroundColor Yellow
+    Write-Host "Winget-UI requires Administrator privileges to update multiple applications reliably." -ForegroundColor Yellow
     Write-Host "Requesting elevation..." -ForegroundColor Cyan
     
     # Restart the script with Administrative privileges
@@ -31,7 +31,7 @@ if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
     # Save to a temp file so the elevated process has a file to execute.
     $scriptPath = $PSCommandPath
     if ([string]::IsNullOrEmpty($scriptPath)) {
-        $scriptPath = Join-Path $env:TEMP "wingetter_temp.ps1"
+        $scriptPath = Join-Path $env:TEMP "winget-ui_temp.ps1"
         $MyInvocation.MyCommand.ScriptBlock.ToString() | Set-Content -Path $scriptPath -Encoding UTF8
     }
 
@@ -76,7 +76,7 @@ try {
             Write-Host "Updating winget..." -ForegroundColor Cyan
             winget upgrade --id Microsoft.AppInstaller --exact
             if ($LASTEXITCODE -eq 0) {
-                Write-Host "winget updated successfully. Please re-run Wingetter." -ForegroundColor Green
+                Write-Host "winget updated successfully. Please re-run Winget-UI." -ForegroundColor Green
             } else {
                 Write-Host "winget update failed (exit code $LASTEXITCODE). Continuing with current version." -ForegroundColor Red
             }
@@ -188,7 +188,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "Wingetter - Select Packages to Update"
+$form.Text = "Winget-UI - Select Packages to Update"
 $form.Size = New-Object System.Drawing.Size(800, 600)
 $form.StartPosition = "CenterScreen"
 $form.MinimumSize = New-Object System.Drawing.Size(600, 400)
