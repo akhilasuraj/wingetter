@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="7" fill="#0d0d0f"/>
+  <!-- Package box (bottom) -->
+  <rect x="7" y="16" width="18" height="11" rx="2" fill="#4f8ef7" opacity="0.9"/>
+  <!-- Package lid -->
+  <rect x="6" y="13" width="20" height="5" rx="2" fill="#6aa2ff"/>
+  <!-- Center line on lid -->
+  <rect x="14" y="13" width="4" height="5" rx="1" fill="#4f8ef7"/>
+  <!-- Upward arrow -->
+  <path d="M16 4 L20 9 H17.5 V12 H14.5 V9 H12 Z" fill="#ffffff" opacity="0.95"/>
+</svg>
