@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winget-UI — Windows Update Manager</title>
+  <meta name="description" content="A GUI-based PowerShell utility that makes discovering and installing Windows app updates effortless." />
+
+  <!-- Material Symbols (same icon font used by Morphe) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner container">
+      <a href="#home" class="nav-logo">
+        <span class="material-symbols-outlined nav-logo-icon">package_2</span>
+        Winget-UI
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#quickstart">Quick Start</a></li>
+        <li>
+          <a href="https://github.com/akhilasuraj/winget-ui" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+            <span class="material-symbols-outlined">code</span>GitHub
+          </a>
+        </li>
+      </ul>
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#features" class="nav-mobile-link">Features</a>
+    <a href="#how-it-works" class="nav-mobile-link">How It Works</a>
+    <a href="#quickstart" class="nav-mobile-link">Quick Start</a>
+    <a href="https://github.com/akhilasuraj/winget-ui" target="_blank" rel="noopener" class="nav-mobile-link">GitHub</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container hero-inner">
+      <div class="hero-badge">
+        <span class="material-symbols-outlined">bolt</span>
+        PowerShell · Windows 10 / 11
+      </div>
+      <h1 class="hero-title">Keep Windows <br /><span class="gradient-text">Up to Date</span><br />Effortlessly</h1>
+      <p class="hero-subtitle">
+        A GUI-based PowerShell utility that discovers every available app update
+        on your system and lets you install them — one click, no command-line
+        juggling required.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" id="heroCopy">
+          <span class="material-symbols-outlined">content_copy</span>
+          <span class="btn-label">Copy Run Command</span>
+          <span class="btn-label-copied" hidden>Copied!</span>
+        </button>
+        <a href="https://github.com/akhilasuraj/winget-ui" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+          <span class="material-symbols-outlined">open_in_new</span>
+          View on GitHub
+        </a>
+      </div>
+      <div class="hero-code-preview">
+        <span class="code-prompt">PS&gt;</span>
+        <code>irm "https://gist.githubusercontent.com/akhilasuraj/1003be9675118c0ac5db3e76edcb37b8/raw/winget-ui.ps1" | iex</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FEATURES
+  ═══════════════════════════════════════════ -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Everything You Need</h2>
+        <p class="section-subtitle">Powerful features packed into a single lightweight script</p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">window</span>
+          <h3>Visual Interface</h3>
+          <p>Displays all available package updates in a native Windows checklist — no command-line knowledge required.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">select_all</span>
+          <h3>Batch Updates</h3>
+          <p>Select multiple packages and update them all in a single action. Sit back while Winget-UI handles the rest.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">checklist</span>
+          <h3>Easy Selection</h3>
+          <p>"Select All" and "Clear Selection" buttons make managing a long list of updates fast and painless.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">security</span>
+          <h3>Auto-Elevation</h3>
+          <p>Automatically requests Administrator privileges via UAC so updates install reliably without extra steps.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">upgrade</span>
+          <h3>Winget Version Check</h3>
+          <p>Detects your installed winget version and prompts you to update it before running, keeping the tool chain fresh.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">terminal</span>
+          <h3>Run from the Web</h3>
+          <p>No download needed. A single PowerShell one-liner fetches and runs the latest version directly from the internet.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════════ -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Simple, powerful, and built for everyone</p>
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <span class="material-symbols-outlined step-icon">play_circle</span>
+          <h3>Run the Script</h3>
+          <p>Paste the one-liner into PowerShell or run <code>.\winget-ui.ps1</code> locally. UAC handles elevation automatically.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <span class="material-symbols-outlined step-icon">search</span>
+          <h3>View Updates</h3>
+          <p>Winget-UI scans your system with <code>winget upgrade</code> and presents every available update in a clean GUI window.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <span class="material-symbols-outlined step-icon">checklist_rtl</span>
+          <h3>Select Packages</h3>
+          <p>Check the applications you want to update. Use "Select All" to grab everything, or pick and choose.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <span class="material-symbols-outlined step-icon">rocket_launch</span>
+          <h3>Update &amp; Done</h3>
+          <p>Click <strong>Update Selected</strong>. The script runs each update sequentially and reports success or failure in the console.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       QUICK START
+  ═══════════════════════════════════════════ -->
+  <section class="section quickstart" id="quickstart">
+    <div class="container quickstart-inner">
+      <div class="section-header">
+        <h2 class="section-title">Quick Start</h2>
+        <p class="section-subtitle">One command. That's it.</p>
+      </div>
+
+      <div class="qs-block">
+        <div class="qs-label">Run directly from the web (no download needed)</div>
+        <div class="code-block" id="codeBlock">
+          <div class="code-bar">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-lang">PowerShell</span>
+            <button class="copy-btn" id="copyBtn" aria-label="Copy command">
+              <span class="material-symbols-outlined">content_copy</span>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre class="code-content"><span class="code-kw">irm</span> <span class="code-str">"https://gist.githubusercontent.com/akhilasuraj/1003be9675118c0ac5db3e76edcb37b8/raw/winget-ui.ps1"</span> | <span class="code-kw">iex</span></pre>
+        </div>
+      </div>
+
+      <div class="qs-divider"><span>or run locally</span></div>
+
+      <div class="qs-steps-inline">
+        <div class="qs-step">
+          <span class="qs-step-num">1</span>
+          <span>Clone or download <code>winget-ui.ps1</code></span>
+        </div>
+        <div class="qs-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="qs-step">
+          <span class="qs-step-num">2</span>
+          <span>Right-click → <em>Run with PowerShell</em></span>
+        </div>
+        <div class="qs-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="qs-step">
+          <span class="qs-step-num">3</span>
+          <span>Approve the UAC prompt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="footer-logo">
+        <span class="material-symbols-outlined">package_2</span>
+        Winget-UI
+      </a>
+      <p class="footer-tagline">A simple GUI for Windows Package Manager updates</p>
+      <div class="footer-links">
+        <a href="https://github.com/akhilasuraj/winget-ui" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined">code</span>GitHub
+        </a>
+        <a href="https://learn.microsoft.com/en-us/windows/package-manager/winget/" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined">open_in_new</span>Winget Docs
+        </a>
+      </div>
+      <p class="footer-copy">Open source and free to use.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
