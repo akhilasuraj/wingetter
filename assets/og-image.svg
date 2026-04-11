@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+
+    <!-- Background glow: soft blue, centered-left -->
+    <radialGradient id="glow-blue" cx="380" cy="260" r="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Background glow: soft purple, upper-right -->
+    <radialGradient id="glow-purple" cx="920" cy="190" r="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Separator line: blue fading to transparent -->
+    <linearGradient id="sep-grad" x1="100" y1="0" x2="440" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.70"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Bottom accent bar: blue to purple -->
+    <linearGradient id="accent-bar" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Icon top-face gradient: lighter → base blue -->
+    <linearGradient id="icon-top-grad" x1="100" y1="210" x2="180" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+
+  </defs>
+
+  <!-- ── Background ──────────────────────────────────────────── -->
+  <rect width="1200" height="630" fill="#0d1117"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+  <rect width="1200" height="630" fill="url(#glow-purple)"/>
+
+  <!-- ── Decorative orbit rings (right half) ────────────────── -->
+  <circle cx="1060" cy="315" r="200"
+          fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.07"/>
+  <circle cx="1060" cy="315" r="295"
+          fill="none" stroke="#8b5cf6" stroke-width="1"   opacity="0.05"/>
+  <circle cx="1060" cy="315" r="390"
+          fill="none" stroke="#6366f1" stroke-width="0.5" opacity="0.03"/>
+
+  <!-- ── 3-D package / box icon ─────────────────────────────── -->
+  <!--   Isometric box: s=80, cx=100, cy=230                     -->
+  <!--   Top face vertices: left(100,230) top(140,210)           -->
+  <!--                      right(180,230) bottom(140,250)       -->
+  <!--   Left face  : y spans 230 → 290                         -->
+  <!--   Right face : y spans 230 → 290                         -->
+
+  <!-- Top face -->
+  <polygon points="100,230 140,210 180,230 140,250"
+           fill="url(#icon-top-grad)"/>
+
+  <!-- Left face -->
+  <polygon points="100,230 140,250 140,290 100,270"
+           fill="#3b82f6"/>
+
+  <!-- Right face -->
+  <polygon points="140,250 180,230 180,270 140,290"
+           fill="#1d4ed8"/>
+
+  <!-- Top-edge specular highlight -->
+  <polyline points="100,230 140,210 180,230"
+            fill="none"
+            stroke="rgba(255,255,255,0.28)"
+            stroke-width="1.5"
+            stroke-linejoin="round"/>
+
+  <!-- Centre vertical seam -->
+  <line x1="140" y1="250" x2="140" y2="290"
+        stroke="rgba(0,0,0,0.20)"
+        stroke-width="1"/>
+
+  <!-- ── App name ─────────────────────────────────────────────── -->
+  <text x="222" y="284"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="88"
+        font-weight="700"
+        letter-spacing="-1"
+        fill="#ffffff">Winget-UI</text>
+
+  <!-- ── Separator ────────────────────────────────────────────── -->
+  <line x1="100" y1="316" x2="440" y2="316"
+        stroke="url(#sep-grad)"
+        stroke-width="2"/>
+
+  <!-- ── Tagline ──────────────────────────────────────────────── -->
+  <text x="100" y="363"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="34"
+        font-weight="400"
+        fill="#94a3b8">Keep Windows Up to Date, Effortlessly</text>
+
+  <!-- ── Sub-label ────────────────────────────────────────────── -->
+  <text x="100" y="410"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="25"
+        font-weight="400"
+        fill="#64748b">PowerShell  ·  Windows 10 / 11</text>
+
+  <!-- ── Bottom accent bar (5 px) ─────────────────────────────── -->
+  <rect x="0" y="625" width="1200" height="5"
+        fill="url(#accent-bar)"/>
+
+</svg>
